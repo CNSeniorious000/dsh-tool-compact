@@ -1,0 +1,19 @@
+{
+  "name": "dsh-tool-compact",
+  "version": "0.0.1",
+  "description": "A tool the MODEL can call to compact its own conversation history, over dsh's backend-independent compaction seam.",
+  "license": "MIT",
+  "keywords": ["dsh", "dsh-plugin", "cordis-plugin", "compaction", "context"],
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": ["lib"],
+  "peerDependencies": {
+    "@deepseek-ai/cordis": ">=4.0.1",
+    "@deepseek-ai/dsh-tools": ">=0.1.1-rc.2 || >=0.1.2-0",
+    "@deepseek-ai/dsh-compaction": ">=0.1.1-rc.2 || >=0.1.2-0"
+  }
+}

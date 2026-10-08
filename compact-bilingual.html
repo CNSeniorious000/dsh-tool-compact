@@ -1,0 +1,303 @@
+<title>Compact 逐句对照</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Noto+Serif+SC:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --paper: #e9eced;
+    --card: #f4f6f6;
+    --ink: #171c20;
+    --ink-soft: #5a6670;
+    --ink-faint: #8b959c;
+    --rule: #ccd3d7;
+    --accent: #0b6157;
+    --mark: #cde4de;
+    --mark-edge: #0b6157;
+  }
+  :root:not([data-theme="light"]) {
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0f1316;
+      --card: #171c20;
+      --ink: #dfe4e6;
+      --ink-soft: #8d99a1;
+      --ink-faint: #6b767e;
+      --rule: #293238;
+      --accent: #5cc4b1;
+      --mark: #1b3a36;
+      --mark-edge: #5cc4b1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #0f1316;
+    --card: #171c20;
+    --ink: #dfe4e6;
+    --ink-soft: #8d99a1;
+    --ink-faint: #6b767e;
+    --rule: #293238;
+    --accent: #5cc4b1;
+    --mark: #1b3a36;
+    --mark-edge: #5cc4b1;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: clamp(2.5rem, 6vw, 5rem) clamp(1.25rem, 4vw, 3rem) 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3rem, 6vw, 4.5rem);
+  }
+
+  /* ---- masthead ---- */
+  .masthead { display: flex; flex-direction: column; gap: 1rem; }
+  .kicker {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 2.9rem);
+    font-weight: 400;
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+    margin: 0;
+  }
+  h1 code {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.78em;
+    font-weight: 500;
+    color: var(--accent);
+  }
+  .standfirst {
+    max-width: 60ch;
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    margin: 0;
+  }
+  .hint {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.74rem;
+    color: var(--ink-faint);
+    border-top: 1px solid var(--rule);
+    padding-top: 0.9rem;
+    margin: 0.4rem 0 0;
+  }
+
+  /* ---- sections ---- */
+  section { display: flex; flex-direction: column; gap: 1.4rem; }
+  .sec-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.6rem 1rem;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.7rem;
+  }
+  .sec-key {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .sec-note {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    max-width: 62ch;
+  }
+  .sec-note em { color: var(--accent); font-style: normal; }
+
+  .para { display: flex; flex-direction: column; }
+  .para + .para { margin-top: 1.5rem; }
+
+  /* ---- the sentence pair: hover/focus lights both sides ---- */
+  .pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 clamp(1.25rem, 3vw, 2.75rem);
+    padding: 0.55rem clamp(0.6rem, 1.5vw, 1rem);
+    border-radius: 3px;
+    border-left: 2px solid transparent;
+    outline: none;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .pair { transition: background-color 120ms ease, border-color 120ms ease; }
+  }
+  .pair:hover,
+  .pair:focus-visible {
+    background: var(--mark);
+    border-left-color: var(--mark-edge);
+  }
+  .en, .zh { margin: 0; }
+  .en { font-size: 1.02rem; }
+  .zh {
+    font-family: "Noto Serif SC", "Songti SC", serif;
+    font-size: 0.97rem;
+    line-height: 1.78;
+  }
+  .pair code {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.86em;
+    color: var(--accent);
+  }
+
+  /* ---- result strings look like what they are ---- */
+  .literal .en, .literal .zh {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.82rem;
+    line-height: 1.65;
+  }
+  .literal .zh { font-family: "IBM Plex Mono", "Noto Serif SC", monospace; }
+
+  /* ---- column labels ---- */
+  .colhead {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 clamp(1.25rem, 3vw, 2.75rem);
+    padding: 0 clamp(0.6rem, 1.5vw, 1rem);
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 1.2rem;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    max-width: 66ch;
+  }
+  footer code {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.85em;
+    color: var(--accent);
+  }
+
+  @media (max-width: 760px) {
+    .pair { grid-template-columns: 1fr; gap: 0.35rem; }
+    .colhead { display: none; }
+    .zh { padding-left: 0.9rem; border-left: 1px solid var(--rule); }
+  }
+</style>
+
+<div class="wrap">
+  <header class="masthead">
+    <div class="kicker">dsh-tool-compact · 模型可见文本</div>
+    <h1>工具 <code>compact</code> 的每一句话</h1>
+    <p class="standfirst">这是模型在决定要不要压缩上下文时，实际读到的全部文字。左为原文，右为中译，逐句对照。</p>
+    <p class="hint">悬停任意一句 · 或按 Tab 逐句移动 — 左右两侧同时点亮</p>
+  </header>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-key">description</span>
+      <span class="sec-note">工具说明。native 模式下随 <em>ToolSchema</em> 直接进入每次请求。</span>
+    </div>
+    <div class="colhead"><span>English</span><span>中文</span></div>
+
+    <div class="para">
+      <div class="pair" tabindex="0">
+        <p class="en">Condense the earlier part of this conversation into a summary, freeing context window for what comes next.</p>
+        <p class="zh">把这段对话较早的部分浓缩成一份摘要，为接下来的工作腾出上下文窗口。</p>
+      </div>
+      <div class="pair" tabindex="0">
+        <p class="en">Everything before the current step becomes one summary message; the current step and everything after it stay verbatim.</p>
+        <p class="zh">当前这一步之前的所有内容会变成一条摘要消息；当前这一步、以及它之后的一切，都原样保留。</p>
+      </div>
+    </div>
+
+    <div class="para">
+      <div class="pair" tabindex="0">
+        <p class="en">Reach for it early rather than late — there is no need to wait until the window is nearly full.</p>
+        <p class="zh">宁可早用，不要晚用 —— 不必等到窗口快满了才动手。</p>
+      </div>
+      <div class="pair" tabindex="0">
+        <p class="en">The moment is whenever what comes next does not depend on the detail behind you: a seam in a long task, where you have finished and reported one large piece and the next stands on its own, or a turn in the conversation, where the user opens a subject with little to do with the old one.</p>
+        <p class="zh">时机就是：接下来要做的事，不依赖你身后的那些细节 —— 可能是长任务里的一道接缝，你刚做完并汇报了一大块，下一块能自己站住；也可能是对话的一次转向，用户开了个跟旧话题关系不大的新题目。</p>
+      </div>
+      <div class="pair" tabindex="0">
+        <p class="en">Compacting at those points is ordinary good housekeeping and the expected thing to do — one summarization call buys back everything the old detail was occupying.</p>
+        <p class="zh">在这些地方压缩是寻常的收拾整理，也正是该做的事 —— 一次摘要调用，就把旧细节占着的空间全部换回来。</p>
+      </div>
+    </div>
+
+    <div class="para">
+      <div class="pair" tabindex="0">
+        <p class="en">One habit keeps it safe: if something back there is still load-bearing, write it into a message or a file first, then compact.</p>
+        <p class="zh">一个习惯就能让它安全：如果后面那里还有什么东西在承重，先把它写进一条消息或一个文件，然后再压缩。</p>
+      </div>
+      <div class="pair" tabindex="0">
+        <p class="en">What the summary keeps survives; exact file contents, command output and quoted text from the compacted range do not.</p>
+        <p class="zh">摘要留下的东西会活下来；被压缩范围内确切的文件内容、命令输出和引用原文，不会。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-key">parameters.reason</span>
+      <span class="sec-note">唯一的参数，选填。模型愿意说明时，这句话就是它给出的理由。</span>
+    </div>
+    <div class="colhead"><span>English</span><span>中文</span></div>
+    <div class="para">
+      <div class="pair" tabindex="0">
+        <p class="en">What you are wrapping up — the work this history belonged to, and what you took from it.</p>
+        <p class="zh">你正在收尾的是什么 —— 这段历史属于哪项工作，以及你从中带走了什么。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-key">output.schema</span>
+      <span class="sec-note">返回值的字段说明。native 模式下<em>不进</em> prompt；只有 Code Mode 会把它渲染进 <em>tools:sdk</em> 段落。</span>
+    </div>
+    <div class="colhead"><span>English</span><span>中文</span></div>
+    <div class="para">
+      <div class="pair" tabindex="0">
+        <p class="en"><code>replacedItems</code> — Number of conversation items condensed into the summary; 0 means nothing was replaced.</p>
+        <p class="zh"><code>replacedItems</code> — 被浓缩进摘要的对话条目数；0 表示什么都没被替换。</p>
+      </div>
+      <div class="pair" tabindex="0">
+        <p class="en"><code>freedTokens</code> — Estimated tokens the replaced range was costing.</p>
+        <p class="zh"><code>freedTokens</code> — 被替换掉的那段范围原本占用的 token 估计值。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-key">output.render</span>
+      <span class="sec-note">压缩结束后，模型作为工具结果读到的那句话。压缩已经发生了，这是回执。</span>
+    </div>
+    <div class="colhead"><span>English</span><span>中文</span></div>
+    <div class="para">
+      <div class="pair literal" tabindex="0">
+        <p class="en">Compacted 5 conversation items (~4290 tokens) into a summary above. That detail is no longer in context.</p>
+        <p class="zh">已把 5 条对话条目（约 4290 tokens）压缩成上方的摘要。那些细节已经不在上下文里了。</p>
+      </div>
+      <div class="pair literal" tabindex="0">
+        <p class="en">Nothing to compact — no earlier history can be safely replaced yet.</p>
+        <p class="zh">没有可压缩的内容 —— 目前还没有能被安全替换掉的早期历史。</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    以上就是全部。这个插件没有注册任何 system prompt 段落 —— 它只碰 <code>ctx.tools.register</code> 和 <code>ctx.compaction.compactIfNeeded</code>，其余对 prompt 的影响都来自 dsh 对所有工具一视同仁的既有行为。
+  </footer>
+</div>
