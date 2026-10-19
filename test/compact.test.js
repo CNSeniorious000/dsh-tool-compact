@@ -13,7 +13,7 @@ test('compact uses the caller and cancellation signal, preserves result mapping,
   ctx.provide('compaction', { compactIfNeeded: async (...args) => { calls.push(args); return result } })
   const fiber = ctx.plugin(compact)
   try {
-    await fiber
+    await fiber.await()
     const tool = tools.get('compact')
     assert.ok(tool)
     assert.equal(tool.isConcurrencySafe, undefined)
@@ -38,6 +38,7 @@ test('installation outside the compaction realm stays inactive', async () => {
   const tools = new Tools(ctx)
   const fiber = ctx.plugin(compact)
   try {
+    await fiber.await()
     assert.equal(tools.get('compact'), undefined)
   } finally {
     await fiber.dispose()
