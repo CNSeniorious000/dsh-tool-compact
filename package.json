@@ -3,17 +3,36 @@
   "version": "0.0.1",
   "description": "A tool the MODEL can call to compact its own conversation history, over dsh's backend-independent compaction seam.",
   "license": "MIT",
-  "keywords": ["dsh", "dsh-plugin", "cordis-plugin", "compaction", "context"],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "cordis-plugin",
+    "compaction",
+    "context"
+  ],
   "type": "module",
   "main": "lib/index.js",
   "exports": {
     ".": "./lib/index.js",
     "./package.json": "./package.json"
   },
-  "files": ["lib"],
+  "files": [
+    "lib",
+    "example"
+  ],
   "peerDependencies": {
     "@deepseek-ai/cordis": ">=4.0.1",
-    "@deepseek-ai/dsh-tools": ">=0.1.1-rc.2 || >=0.1.2-0",
-    "@deepseek-ai/dsh-compaction": ">=0.1.1-rc.2 || >=0.1.2-0"
+    "@deepseek-ai/dsh-tools": ">=0.1.1-rc.2 || >=0.1.2-0 || >=0.2.1-0",
+    "@deepseek-ai/dsh-compaction": ">=0.1.1-rc.2 || >=0.1.2-0 || >=0.2.1-0"
+  },
+  "scripts": {
+    "test": "bun run test:types && node --test test/*.test.js",
+    "test:types": "tsc --noEmit --skipLibCheck --strict --target ES2022 --module NodeNext --moduleResolution NodeNext test/host-contract.ts"
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "4.0.5",
+    "@deepseek-ai/dsh-compaction": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-tools": "0.2.1-rc.2",
+    "typescript": "5.9.3"
   }
 }
