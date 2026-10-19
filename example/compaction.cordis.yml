@@ -1,0 +1,5 @@
+# Insert the tool inside the existing compaction group's config, next to command-compact.
+# DSH >= 0.1.7: edit config.plugins in the active dsh-agent-preset declaration.
+# Older hosts: edit the preset directory's agent.cordis.yml.
+- id: tool-compact
+  name: dsh-tool-compact
